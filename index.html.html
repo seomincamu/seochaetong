@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서민채무통합 - 3개월 이상 근무자 누구나</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(139, 92, 246, 0.9) 50%, rgba(16, 185, 129, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .pulse-bg {
+            animation: pulse-bg 2s infinite;
+        }
+        @keyframes pulse-bg {
+            0%, 100% { background-color: rgb(34, 197, 94); }
+            50% { background-color: rgb(22, 163, 74); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success-message {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .error-message {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full floating-animation"></div>
+        <div class="absolute bottom-32 right-16 w-16 h-16 bg-yellow-400/20 rounded-full floating-animation" style="animation-delay: -2s;"></div>
+        <div class="absolute top-1/2 left-20 w-12 h-12 bg-green-400/20 rounded-full floating-animation" style="animation-delay: -4s;"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    서민채무통합 근로자 우대 대출
+                    <span class="block text-3xl md:text-4xl font-normal mt-4 text-blue-100">
+                        3개월 근무자 누구나
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+                    3개월 이상 근무한 근로자라면<br>
+                    <strong class="text-yellow-300">연 8.9%부터 최대 5,000만원</strong>까지 대출 가능
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <button onclick="scrollToForm()" class="pulse-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-2xl">
+                        🚀 무료 대출 상담하기
+                    </button>
+                    <button onclick="scrollToFeatures()" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-all duration-300 border border-white/30">
+                        📋 자세히 알아보기
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                        <div class="text-3xl mb-3">💰</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">최대 5,000만원</h3>
+                        <p class="text-blue-100">근무기간에 따른 한도</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                        <div class="text-3xl mb-3">⚡</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">당일 승인</h3>
+                        <p class="text-blue-100">간단한 서류로 빠른 진행</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                        <div class="text-3xl mb-3">🏢</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">직종 무관</h3>
+                        <p class="text-blue-100">3개월 근무면 누구나</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-green-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">왜 근로자 우대 대출인가요?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    성실히 일하는 서민 근로자를 위한 맞춤형 금융 서비스로 경제적 자유를 지원합니다
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl text-white">👷</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">직종 상관없이</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        제조업, 서비스업, 건설업 등 직종에 관계없이 3개월 이상 근무하신 분이라면 누구나 신청 가능합니다.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl text-white">💳</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">우대 금리 혜택</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        근무기간과 소득에 따라 연 8.9%부터 우대금리를 적용받아 부담을 크게 줄일 수 있습니다.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl text-white">📄</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">간단한 서류</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        재직증명서, 급여명세서 등 최소한의 서류로 빠르고 간편하게 대출 신청이 가능합니다.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl text-white">📞</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">대출모집인 상담</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        정식지정 대출모집인 상담사가 개인 상황에 맞는 최적의 대출 조건을 안내해드립니다.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl text-white">🚀</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">당일 진행</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        오전 신청 시 당일 승인까지 가능한 빠른 처리로 급하게 자금이 필요한 분들을 도와드립니다.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl text-white">🏦</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">신뢰할 수 있는 금융</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        정부 등록 금융기관과의 제휴로 투명하고 안전한 대출 서비스를 제공합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">대출 신청 자격</h2>
+                <p class="text-xl text-gray-600">아래 조건 중 하나만 해당되면 신청 가능합니다</p>
+            </div>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-3xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">✓</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">기본 자격</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 만 19세 이상 65세 이하</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 현 직장 3개월 이상 근무</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 월소득 150만원 이상</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 신용등급 무관 (7등급까지)</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-green-100 to-emerald-100 p-8 rounded-3xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">★</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">우대 조건</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 근무기간 1년 이상 (금리 우대)</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 월소득 300만원 이상 (한도 증액)</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 대기업·공공기관 (특별 우대)</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 신용등급 4등급 이상 (최우대)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="max-w-2xl mx-auto mt-12 bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
+                <div class="flex items-start">
+                    <div class="text-2xl mr-3">💡</div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-2">이런 분들도 환영합니다!</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            • 일용직, 파트타임도 3개월 이상 지속 근무 시 가능<br>
+                            • 프리랜서, 개인사업자도 소득 증빙 가능 시 신청 가능<br>
+                            • 기존 대출이 있어도 소득 대비 적정 수준이면 추가 대출 가능
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">간단한 3단계 진행방법</h2>
+                <p class="text-xl text-gray-600">복잡한 절차 없이 쉽고 빠르게 대출을 받으세요</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center relative">
+                            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                                <span class="text-2xl text-white font-bold">1</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">무료 상담 신청</h3>
+                            <p class="text-gray-600">
+                                간단한 정보 입력으로 근로자 대출 전문가 상담을 신청하세요. 개인정보는 안전하게 보호됩니다.
+                            </p>
+                        </div>
+                        <div class="text-center relative">
+                            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                                <span class="text-2xl text-white font-bold">2</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">맞춤 조건 제시</h3>
+                            <p class="text-gray-600">
+                                근무 조건과 소득을 분석하여 최적의 대출 조건과 금리를 제시해드립니다.
+                            </p>
+                        </div>
+                        <div class="text-center relative">
+                            <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                                <span class="text-2xl text-white font-bold">3</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">당일 승인·실행</h3>
+                            <p class="text-gray-600">
+                                간단한 서류 제출 후 당일 승인부터 실행까지 빠르게 진행됩니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="application-form" class="py-20 bg-gradient-to-br from-blue-500 via-indigo-600 to-green-500">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">무료 대출 상담 신청</h2>
+                <p class="text-xl text-blue-100">
+                    지금 신청하시면 근로자 대출 전문가가 24시간 내에 연락드립니다
+                </p>
+            </div>
+            <div class="max-w-xl mx-auto">
+                <form id="applicationForm" class="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">이름 *</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">생년월일 *</label>
+                            <input type="text" id="birthDate" required class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800" placeholder="예: 1990-01-01 또는 1990.01.01">
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">연락처 *</label>
+                            <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800" placeholder="010-0000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">근무기간</label>
+                            <select id="workPeriod" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
+                                <option value="">선택해주세요</option>
+                                <option value="3-6개월">3-6개월</option>
+                                <option value="6-12개월">6개월-1년</option>
+                                <option value="1-3년">1-3년</option>
+                                <option value="3년이상">3년 이상</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">월 소득</label>
+                            <select id="monthlyIncome" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
+                                <option value="">선택해주세요</option>
+                                <option value="150-200만원">150-200만원</option>
+                                <option value="200-300만원">200-300만원</option>
+                                <option value="300-500만원">300-500만원</option>
+                                <option value="500만원이상">500만원 이상</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">희망 대출금액</label>
+                            <select id="loanAmount" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
+                                <option value="">선택해주세요</option>
+                                <option value="500만원 이하">500만원 이하</option>
+                                <option value="500-1000만원">500만원 ~ 1,000만원</option>
+                                <option value="1000-3000만원">1,000만원 ~ 3,000만원</option>
+                                <option value="3000만원 이상">3,000만원 이상</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">희망 상담 시간</label>
+                            <select id="consultTime" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
+                                <option value="">선택해주세요</option>
+                                <option value="오전 (9시-12시)">오전 (9시-12시)</option>
+                                <option value="오후 (1시-6시)">오후 (1시-6시)</option>
+                                <option value="저녁 (6시-9시)">저녁 (6시-9시)</option>
+                                <option value="언제든지">언제든지</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-white text-sm font-semibold mb-2">추가 메모</label>
+                            <textarea id="memo" rows="3" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800" placeholder="직장 형태, 급여 지급 방식 등 추가 정보를 자유롭게 적어주세요"></textarea>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" id="privacy" required class="mt-1 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="privacy" class="text-sm text-blue-100">
+                                개인정보 수집 및 이용에 동의합니다. 
+                                <span class="underline cursor-pointer hover:text-white" onclick="showPrivacyModal()">자세히 보기</span>
+                            </label>
+                        </div>
+                        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-4 rounded-xl text-lg font-bold hover:from-green-600 hover:to-emerald-600 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            💬 무료 대출 상담 신청하기
+                        </button>
+                    </div>
+                    <div id="messageArea"></div>
+                </form>
+                <div class="text-center mt-8">
+                    <p class="text-blue-100 text-sm">
+                        🔒 고객님의 개인정보는 SSL 암호화로 안전하게 보호됩니다
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">근로자 우대 대출</h3>
+                <p class="text-gray-400 mb-6">
+                    대출금리 : 연 20%이내 (담보대출에 한해 심사기준에 따라 차등적용) 연체이율 : 연 20% 이내 대출중개수수료 없음 중개수수료를 요구하거나 받는것은 불법으로 대출과 관련된 일체 수수료를 받지 않습니다. 취급수수료 등 기타부대비용 없음 / 상환방법 : 원리금균등상환방식, 만기일시상환방식 이자 외 추가비용 없음 단, 일부 담보대출상품에 한해 저당설정, 해지비용 및 조기상환수수료가 발생할수 있습니다. 조기상환조건 : 대출실행일로 부터 1년 이내 상환시 최초 대출금 2% 적용, 단 이자와 조기상환 수수료의 합산액은 20%를 초과하지 않음.
+                    이 사이트에서 광고되는 상품들의 상환기간은 모두 61일 이상이며 최장 상환기간 120개월 미만입니다. 대출 총비용 예시는 다음과 같습니다. 1,000,000원을 12개월 동안 이자 20%, 최대 이자율 20%로 대출할시 총 상환금액은 1,111,614원입니다. (대출 상품에 따라 달라질 수 있습니다.)
+
+                    "과도한 빚은 당신에게 큰 불행을 안겨줄 수 있습니다. 중개수수료를 요구하거나 받는 것은 불법입니다." "대출 시 귀하의 신용등급이 하락할 수 있습니다."
+
+                    대부업 등의 등록 및 금융이용자 보호에 관한 법률 제3조의2에 따라 위와 같이 대부중개업을 등록(등록갱신) 하였습니다.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.scrollToForm = function() {
+                document.getElementById('application-form').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+
+            window.scrollToFeatures = function() {
+                document.getElementById('features').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+
+            window.showPrivacyModal = function() {
+                alert('개인정보 수집 및 이용 동의\n\n수집하는 개인정보: 이름, 연락처, 근무정보\n이용목적: 대출 상담 서비스 제공\n보유기간: 상담 완료 후 3년\n제3자 제공: 제휴 금융기관에 상담 목적으로만 제공');
+            }
+
+            const applicationForm = document.getElementById('applicationForm');
+            if (applicationForm) {
+                applicationForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = document.getElementById('submitBtn');
+                    const messageArea = document.getElementById('messageArea');
+                    
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<div class="loading-spinner"></div>전송 중...';
+                    
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        birthDate: document.getElementById('birthDate').value,
+                        phone: document.getElementById('phone').value,
+                        workPeriod: document.getElementById('workPeriod').value,
+                        monthlyIncome: document.getElementById('monthlyIncome').value,
+                        loanAmount: document.getElementById('loanAmount').value,
+                        consultTime: document.getElementById('consultTime').value,
+                        memo: document.getElementById('memo').value,
+                        timestamp: new Date().toISOString(),
+                        source: '서민채무통합 랜딩페이지'
+                    };
+
+                    try {
+                        const response = await fetch('https://hook.eu2.make.com/pggpou3ihatf0dpv6s9kfvkpxrl5ixnx', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+
+                        if (response.ok) {
+                            messageArea.innerHTML = '<div class="success-message">✅ 상담 신청이 완료되었습니다!<br>24시간 내에 전문 상담사가 연락드리겠습니다.</div>';
+                            
+                            document.getElementById('name').value = '';
+                            document.getElementById('birthDate').value = '';
+                            document.getElementById('phone').value = '';
+                            document.getElementById('workPeriod').value = '';
+                            document.getElementById('monthlyIncome').value = '';
+                            document.getElementById('loanAmount').value = '';
+                            document.getElementById('consultTime').value = '';
+                            document.getElementById('memo').value = '';
+                            document.getElementById('privacy').checked = false;
+                        } else {
+                            throw new Error('서버 응답 오류');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        messageArea.innerHTML = '<div class="error-message">❌ 전송 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.</div>';
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '💬 무료 대출 상담 신청하기';
+                    }
+                });
+            }
+
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/[^0-9]/g, '');
+                    if (value.length >= 3 && value.length <= 7) {
+                        value = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+                    } else if (value.length >= 8) {
+                        value = value.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
+                    }
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
