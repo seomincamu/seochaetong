@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>서민채무통합 - 3개월 이상 근무자 누구나</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJGH08NBD3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MJGH08NBD3');
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
     <style>
@@ -407,16 +417,34 @@
                 document.getElementById('application-form').scrollIntoView({
                     behavior: 'smooth'
                 });
+                
+                // Google Analytics 이벤트 추적
+                gtag('event', 'click', {
+                    event_category: 'engagement',
+                    event_label: 'scroll_to_form_button'
+                });
             }
 
             window.scrollToFeatures = function() {
                 document.getElementById('features').scrollIntoView({
                     behavior: 'smooth'
                 });
+                
+                // Google Analytics 이벤트 추적
+                gtag('event', 'click', {
+                    event_category: 'engagement',
+                    event_label: 'scroll_to_features_button'
+                });
             }
 
             window.showPrivacyModal = function() {
                 alert('개인정보 수집 및 이용 동의\n\n수집하는 개인정보: 이름, 연락처, 근무정보\n이용목적: 대출 상담 서비스 제공\n보유기간: 상담 완료 후 3년\n제3자 제공: 제휴 금융기관에 상담 목적으로만 제공');
+                
+                // Google Analytics 이벤트 추적
+                gtag('event', 'click', {
+                    event_category: 'engagement',
+                    event_label: 'privacy_policy_view'
+                });
             }
 
             const applicationForm = document.getElementById('applicationForm');
@@ -455,6 +483,13 @@
                         if (response.ok) {
                             messageArea.innerHTML = '<div class="success-message">✅ 상담 신청이 완료되었습니다!<br>24시간 내에 전문 상담사가 연락드리겠습니다.</div>';
                             
+                            // Google Analytics 전환 이벤트 추적
+                            gtag('event', 'conversion', {
+                                event_category: 'form',
+                                event_label: 'loan_consultation_request',
+                                value: 1
+                            });
+                            
                             document.getElementById('name').value = '';
                             document.getElementById('birthDate').value = '';
                             document.getElementById('phone').value = '';
@@ -470,6 +505,11 @@
                     } catch (error) {
                         console.error('Error:', error);
                         messageArea.innerHTML = '<div class="error-message">❌ 전송 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.</div>';
+                        
+                        // Google Analytics 오류 이벤트 추적
+                        gtag('event', 'exception', {
+                            description: 'form_submission_error'
+                        });
                     } finally {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = '💬 무료 대출 상담 신청하기';
