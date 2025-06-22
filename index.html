@@ -3,457 +3,847 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정부정책자금 지원센터 - 직장인 사업자라면 누구나</title>
-    <title> 연 3.5 최대1억 </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <title>정부정책자금 지원센터 | 저금리 대출</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(139, 92, 246, 0.9) 50%, rgba(16, 185, 129, 0.9) 100%),
-                        url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
         }
-        .card-shadow {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
-        .feature-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #e11d48;
         }
-        .floating-animation {
-            animation: float 6s ease-in-out infinite;
+
+        .header-phone {
+            background: #e11d48;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+        .header-phone:hover {
+            background: #be185d;
+            transform: scale(1.05);
         }
-        .pulse-bg {
-            animation: pulse-bg 2s infinite;
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #1e40af 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding-top: 80px;
         }
-        @keyframes pulse-bg {
-            0%, 100% { background-color: rgb(34, 197, 94); }
-            50% { background-color: rgb(22, 163, 74); }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="25" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="25" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
-        .loading-spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #3498db;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
             display: inline-block;
-            margin-right: 8px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
+
+        .hero-highlight {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            font-weight: 500;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .hero-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .hero-benefit {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-benefit strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #fbbf24;
+            margin-bottom: 5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #e11d48, #be185d);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(225, 29, 72, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(225, 29, 72, 0.5);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #1e1b4b;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #e11d48;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 60px;
+        }
+
+        .process-steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #e11d48;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin: 20px 0;
+            color: #3b82f6;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .step-desc {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products-section {
+            background: white;
+            padding: 100px 20px;
+        }
+
+        .products-grid {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .product-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fbbf24;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-features {
+            list-style: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: linear-gradient(135deg, #1e1b4b, #3730a3);
+            padding: 100px 20px;
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .form-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fbbf24;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #e11d48, #be185d);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 10px 25px rgba(225, 29, 72, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e11d48;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item strong {
+            display: block;
+            font-size: 1.3rem;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        .contact-item span {
+            font-size: 1.1rem;
+        }
+
+        .footer-notice {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            margin-top: 40px;
+            opacity: 0.7;
+        }
+
+        /* Success Message */
         .success-message {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #10b981;
             color: white;
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-            text-align: center;
-            font-weight: 600;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
         }
-        .error-message {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e11d48;
             color: white;
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-            text-align: center;
-            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(225, 29, 72, 0.4);
+            z-index: 1000;
+            animation: bounce 2s infinite;
+            display: none;
+        }
+
+        .floating-cta.show {
+            display: block;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .hero-benefits {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">베스트론컴퍼니</div>
+            <a href="tel:1588-0547" class="header-phone">📞 1588-0547</a>
+        </div>
+    </header>
+
     <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
-        <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full floating-animation"></div>
-        <div class="absolute bottom-32 right-16 w-16 h-16 bg-yellow-400/20 rounded-full floating-animation" style="animation-delay: -2s;"></div>
-        <div class="absolute top-1/2 left-20 w-12 h-12 bg-green-400/20 rounded-full floating-animation" style="animation-delay: -4s;"></div>
-
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                    정부정책자금 지원센터
-                    <span class="block text-3xl md:text-4xl font-normal mt-4 text-blue-100">
-                        직장인 사업자라면 누구나
-                    </span>
-                </h1>
-                <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-                    소득이없어도가능<br>
-                    <strong class="text-yellow-300">연 3.5%부터 최대 10,000만원</strong>까지 대출 가능
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                    <button onclick="scrollToForm()" class="pulse-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-2xl">
-                        🚀 무료 대출 상담하기
-                    </button>
-                    <button onclick="scrollToFeatures()" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-all duration-300 border border-white/30">
-                        📋 자세히 알아보기
-                    </button>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🏛️ 정부 공식 인증 지원센터</div>
+            <h1>
+                <span class="hero-highlight">최대한도 최저금리</span><br>
+                정부정책자금 지원센터
+            </h1>
+            <p class="hero-subtitle">
+                근로자도,사업자도 까다로운 조건 NO!<br>
+                <strong>12시간 내 승인결과 확인</strong>
+            </p>
+            
+            <div class="hero-benefits">
+                <div class="hero-benefit">
+                    <strong>근로자 · 사업자</strong>
+                    <span>정부혜택으로 높은승인률</span>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                        <div class="text-3xl mb-3">💰</div>
-                        <h3 class="text-xl font-semibold text-white mb-2">최대 5,000만원</h3>
-                        <p class="text-blue-100">근무기간에 따른 한도</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                        <div class="text-3xl mb-3">⚡</div>
-                        <h3 class="text-xl font-semibold text-white mb-2">당일 승인</h3>
-                        <p class="text-blue-100">간단한 서류로 빠른 진행</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                        <div class="text-3xl mb-3">🏢</div>
-                        <h3 class="text-xl font-semibold text-white mb-2">직종 무관</h3>
-                        <p class="text-blue-100">직장인 사업자라면 누구나</p>
-                    </div>
+                <div class="hero-benefit">
+                    <strong>24시간 승인</strong>
+                    <span>빠른 심사 진행</span>
                 </div>
-            </div>
+                <div class="hero-benefit">
+                    <strong>95% 승인률</strong>
+                    <span>업계 최고 성공률</span>
+               
+               </div>
+                </div>
+                
+                   <div class="cta-buttons">
+                <a href="#form" class="cta-primary">🔥 지금 바로 신청하기</a>
+             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-green-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">정부정책자금이 뭔가요?</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    서민을 위한 맞춤형 금융 서비스로 경제적 자유를 지원합니다
-                </p>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2 class="section-title">왜 10만명이 선택했을까요?</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-text">승인 성공률</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12시간</span>
+                    <div class="stat-text">평균 승인시간</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5억원</span>
+                    <div class="stat-text">최대 지원한도</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10만+</span>
+                    <div class="stat-text">누적 지원고객</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">빠른상담</span>
+                    <div class="stat-text">각 분야별 전문상담사</div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="text-2xl text-white">👷</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">직종 상관없이</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        제조업, 서비스업, 건설업 등 직종에 관계없이 근무하신 분이라면 누구나 신청 가능합니다.
-                    </p>
-                </div>
-                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="text-2xl text-white">💳</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">우대 금리 혜택</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        근무기간과 소득에 따라 연 3.5%부터 우대금리를 적용받아 부담을 크게 줄일 수 있습니다.
-                    </p>
-                </div>
-                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
-                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="text-2xl text-white">📄</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">간단한 서류</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        재직증명서, 급여명세서 등 최소한의 서류로 빠르고 간편하게 대출 신청이 가능합니다.
-                    </p>
-                </div>
-                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
-                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="text-2xl text-white">📞</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">전문가 상담</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        근로자,사업자 대출 전문 상담사가 개인 상황에 맞는 최적의 대출 조건을 안내해드립니다.
-                    </p>
-                </div>
-                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
-                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="text-2xl text-white">🚀</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">당일 진행</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        오전 신청 시 당일 승인까지 가능한 빠른 처리로 급하게 자금이 필요한 분들을 도와드립니다.
-                    </p>
-                </div>
-                <div class="feature-card bg-white p-8 rounded-3xl card-shadow">
-                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="text-2xl text-white">🏦</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">신뢰할 수 있는 금융</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        정부 등록 금융기관과의 제휴로 투명하고 안전한 대출 서비스를 제공합니다.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Eligibility Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">대출 신청 자격</h2>
-                <p class="text-xl text-gray-600">아래 조건 중 하나만 해당되면 신청 가능합니다</p>
-            </div>
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-gradient-to-br from-blue-100 to-indigo-100 p-8 rounded-3xl">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">✓</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-800">기본 자격</h3>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 만 19세 이상 65세 이하</li>
-                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 직장인 사업자구분없이 가능</li>
-                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 월소득 관계없이</li>
-                        <li class="flex items-center"><span class="text-green-500 mr-2">•</span> 신용등급 무관 (7등급까지)</li>
-                    </ul>
-                </div>
-                <div class="bg-gradient-to-br from-green-100 to-emerald-100 p-8 rounded-3xl">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">★</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-800">우대 조건</h3>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 근무기간 1년 이상 (금리 우대)</li>
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 월소득 300만원 이상 (한도 증액)</li>
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 사업자 (금리우대)</li>
-                        <li class="flex items-center"><span class="text-blue-500 mr-2">•</span> 신용등급 4등급 이상 (최고우대)</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="max-w-2xl mx-auto mt-12 bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
-                <div class="flex items-start">
-                    <div class="text-2xl mr-3">💡</div>
-                    <div>
-                        <h4 class="font-bold text-gray-800 mb-2">이런 분들도 환영합니다!</h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            • 일용직, 파트타임도 3개월 이상 지속 근무 시 가능<br>
-                            • 프리랜서, 개인사업자도 소득 증빙 가능 시 신청 가능<br>
-                            • 기존 대출이 있어도 소득 대비 적정 수준이면 추가 대출 가능
-                        </p>
-                    </div>
-                </div>
-            </div>
+                <div class="stat-item">
+                    <span class="stat-number">컨설팅</span>
+                    <div class="stat-text">무료 상세 컨설팅</div>
         </div>
     </section>
 
     <!-- Process Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-5">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">간단한 3단계 프로세스</h2>
-                <p class="text-xl text-gray-600">복잡한 절차 없이 쉽고 빠르게 대출을 받으세요</p>
-            </div>
-            <div class="max-w-4xl mx-auto">
-                <div class="relative">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="text-center relative">
-                            <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
-                                <span class="text-2xl text-white font-bold">1</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">무료 상담 신청</h3>
-                            <p class="text-gray-600">
-                                간단한 정보 입력으로 근로자 대출 전문가 상담을 신청하세요. 개인정보는 안전하게 보호됩니다.
-                            </p>
-                        </div>
-                        <div class="text-center relative">
-                            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
-                                <span class="text-2xl text-white font-bold">2</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">맞춤 조건 제시</h3>
-                            <p class="text-gray-600">
-                                근무 조건과 소득을 분석하여 최적의 대출 조건과 금리를 제시해드립니다.
-                            </p>
-                        </div>
-                        <div class="text-center relative">
-                            <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
-                                <span class="text-2xl text-white font-bold">3</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">당일 승인·실행</h3>
-                            <p class="text-gray-600">
-                                간단한 서류 제출 후 당일 승인부터 실행까지 빠르게 진행됩니다.
-                            </p>
-                        </div>
-                    </div>
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">간단한 3단계로 끝!</h2>
+            <p class="section-subtitle">복잡한 절차 없이 빠르고 간편하게</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📝</div>
+                    <h3 class="step-title">온라인 신청</h3>
+                    <p class="step-desc">간단한 정보 입력만으로 신청 완료! 5분이면 충분합니다.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">⚡</div>
+                    <h3 class="step-title">빠른 심사</h3>
+                    <p class="step-desc">AI 심사시스템으로 24시간 내 승인결과를 확인하세요.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">💰</div>
+                    <h3 class="step-title">자금 지급</h3>
+                    <p class="step-desc">승인 즉시 계좌로 자금이 입금됩니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Application Form -->
-    <section id="application-form" class="py-20 bg-gradient-to-br from-blue-500 via-indigo-600 to-green-500">
-        <div class="container mx-auto px-6">
-            <div class="max-w-2xl mx-auto text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">무료 대출 상담 신청</h2>
-                <p class="text-xl text-blue-100">
-                    지금 신청하시면 근로자,사업자 각 대출 전문가가 24시간 내에 연락드립니다
-                </p>
-            </div>
-            <div class="max-w-xl mx-auto">
-                <form id="applicationForm" class="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20">
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-white text-sm font-semibold mb-2">이름 *</label>
-                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
-                        </div>
-                        <div>
-                            <label class="block text-white text-sm font-semibold mb-2">생년월일 *</label>
-                            <input type="text" id="birthDate" required class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800" placeholder="예: 1990-01-01 또는 1990.01.01">
-                        </div>
-                        <div>
-                            <label class="block text-white text-sm font-semibold mb-2">연락처 *</label>
-                            <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800" placeholder="010-0000-0000">
-                        </div>
-                        <div>
-                            <label class="block text-white text-sm font-semibold mb-2">직군</label>
-                            <select id="workPeriod" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-gray-300 focus:ring-4 focus:ring-blue-500/30 focus:border-blue-500 transition-all duration-300 text-gray-800">
-                                <option value="">선택해주세요</option>
-                                <option value="직장인">직장인</option>
-                                <option value="개인사업자">개인사업자</option>
-                                <option value="법인사업자">법인사업자</option>
-                                <option value="프리랜서">프리랜서</option>
-                                <option value="무직">무직</option>
-                            </select>
-                     </textarea>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <input type="checkbox" id="privacy" required class="mt-1 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="privacy" class="text-sm text-blue-100">
-                                개인정보 수집 및 이용에 동의합니다. 
-                                <span class="underline cursor-pointer hover:text-white" onclick="showPrivacyModal()">자세히 보기</span>
-                            </label>
-                        </div>
-                        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-4 rounded-xl text-lg font-bold hover:from-green-600 hover:to-emerald-600 transform hover:scale-105 transition-all duration-300 shadow-lg">
-                            💬 무료 대출 상담 신청하기
-                        </button>
-                    </div>
-                    <div id="messageArea"></div>
-                </form>
-                <div class="text-center mt-8">
-                    <p class="text-blue-100 text-sm">
-                        🔒 고객님의 개인정보는 SSL 암호화로 안전하게 보호됩니다
-                    </p>
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">맞춤형 정부지원 프로그램</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3 class="product-title">창업지원자금</h3>
+                    <div class="product-amount">최대 1억원</div>
+                    <ul class="product-features">
+                        <li>저금리 지원</li>
+                        <li>5년 거치 10년 분할상환</li>
+                        <li>업종 제한 없음</li>
+                        <li>온라인 간편 신청</li>
+                    </ul>
                 </div>
+                <div class="product-card">
+                    <h3 class="product-title">근로자정부자금</h3>
+                    <div class="product-amount">최대 5천만원</div>
+                    <ul class="product-features">
+                        <li>연 5.5%~ 부터</li>
+                        <li>직종무관 · 무직가능</li>
+                        <li>빠른심사 높은승인율</li>
+                        <li>정부 80% 보증지원</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3 class="product-title">운영자금</h3>
+                    <div class="product-amount">최대 1억원</div>
+                    <ul class="product-features">
+                        <li>연 3.5% 우대금리</li>
+                        <li>인건비 · 임차료 지원</li>
+                        <li>서류간소화 빠른심사</li>
+                        <li>신용보증서 발급</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h3 class="product-title">빠른상담</h3>
+                    <div class="product-amount">무료 컨설팅</div>
+                    <ul class="product-features">
+                        <li>숨어있는 악성채무</li>
+                        <li>신용평점 개선상담</li>
+                        <li>대환대출 전문상담</li>
+                        <li>모든상담 무료상담</li>
             </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="form">
+        <div class="form-container">
+            <h2 class="form-title">💰 무료 한도조회 신청</h2>
+            <p class="form-subtitle">30초 입력으로 나의 대출 가능 금액을 확인하세요!</p>
+            <p class="form-subtitle">※은행사 직접조회로 조회시 신용점수에 영향을끼치지않습니다※</p>
+        
+            
+            <form class="contact-form" id="loanForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">성함 *</label>
+                        <input type="text" id="name" name="name" placeholder="홍길동" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">휴대폰 번호 *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="business">직군</label>
+                        <select id="business" name="business">
+                            <option value="">선택해주세요</option>
+                            <option value="근로자">근로자</option>
+                            <option value="개인사업자">개인사업자</option>
+                            <option value="법인사업자">법인사업자</option>
+                            <option value="프리랜서">프리랜서</option>
+                            <option value="무직or주부">무직or주부</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">희망 대출금액</label>
+                        <select id="amount" name="amount">
+                            <option value="">선택해주세요</option>
+                            <option value="5천만원 이하">5천만원 이하</option>
+                            <option value="5천만원~1억원">5천만원~1억원</option>
+                            <option value="1억원~5억원">1억원~5억원</option>  
+                       </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="purpose">기타 메모</label>
+                    <textarea id="purpose" name="purpose" rows="3" placeholder="특이사항이나 문의사항을 메모해주세요(선택)"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">🔥 무료 한도조회 신청하기</button>
+                
+                <div class="success-message" id="successMessage">
+                    <strong>✅ 신청이 완료되었습니다!</strong><br>
+                    전문 상담사가 빠른시간 내에 연락드려 맞춤 대출 상품을 안내해드리겠습니다.
+                </div>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <h3 class="text-2xl font-bold mb-4">근로자 우대 대출</h3>
-                <p class="text-gray-400 mb-6">
-                    대출금리 : 연 8.9%~20%이내 (근무기간 및 소득에 따라 차등적용) 연체이율 : 연 20% 이내 대출중개수수료 없음 중개수수료를 요구하거나 받는것은 불법으로 대출과 관련된 일체 수수료를 받지 않습니다. 취급수수료 등 기타부대비용 없음 / 상환방법 : 원리금균등상환방식, 만기일시상환방식 이자 외 추가비용 없음 단, 일부 담보대출상품에 한해 저당설정, 해지비용 및 조기상환수수료가 발생할수 있습니다. 조기상환조건 : 대출실행일로 부터 1년 이내 상환시 최초 대출금 2% 적용
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            window.scrollToForm = function() {
-                document.getElementById('application-form').scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-
-            window.scrollToFeatures = function() {
-                document.getElementById('features').scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-
-            window.showPrivacyModal = function() {
-                alert('개인정보 수집 및 이용 동의\n\n수집하는 개인정보: 이름, 연락처, 근무정보\n이용목적: 대출 상담 서비스 제공\n보유기간: 상담 완료 후 3년\n제3자 제공: 제휴 금융기관에 상담 목적으로만 제공');
-            }
-
-            const applicationForm = document.getElementById('applicationForm');
-            if (applicationForm) {
-                applicationForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    const submitBtn = document.getElementById('submitBtn');
-                    const messageArea = document.getElementById('messageArea');
-                    
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<div class="loading-spinner"></div>전송 중...';
-                    
-                    const formData = {
-                        name: document.getElementById('name').value,
-                        birthDate: document.getElementById('birthDate').value,
-                        phone: document.getElementById('phone').value,
-                        workPeriod: document.getElementById('workPeriod').value,
-                        monthlyIncome: document.getElementById('monthlyIncome').value,
-                        loanAmount: document.getElementById('loanAmount').value,
-                        consultTime: document.getElementById('consultTime').value,
-                        memo: document.getElementById('memo').value,
-                        timestamp: new Date().toISOString(),
-                        source: '서민채무통합 랜딩페이지'
-                    };
-
-                    try {
-                        const response = await fetch('https://hook.eu2.make.com/pggpou3ihatf0dpv6s9kfvkpxrl5ixnx', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(formData)
-                        });
-
-                        if (response.ok) {
-                            messageArea.innerHTML = '<div class="success-message">✅ 상담 신청이 완료되었습니다!<br>24시간 내에 전문 상담사가 연락드리겠습니다.</div>';
-                            
-                            document.getElementById('name').value = '';
-                            document.getElementById('birthDate').value = '';
-                            document.getElementById('phone').value = '';
-                            document.getElementById('workPeriod').value = '';
-                            document.getElementById('monthlyIncome').value = '';
-                            document.getElementById('loanAmount').value = '';
-                            document.getElementById('consultTime').value = '';
-                            document.getElementById('memo').value = '';
-                            document.getElementById('privacy').checked = false;
-                        } else {
-                            throw new Error('서버 응답 오류');
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        messageArea.innerHTML = '<div class="error-message">❌ 전송 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.</div>';
-                    } finally {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = '💬 무료 대출 상담 신청하기';
-                    }
-                });
-            }
-
-            const phoneInput = document.getElementById('phone');
-            if (phoneInput) {
-                phoneInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/[^0-9]/g, '');
-                    if (value.length >= 3 && value.length <= 7) {
-                        value = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
-                    } else if (value.length >= 8) {
-                        value = value.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
-                    }
-                    e.target.value = value;
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+    <footer class="footer">
