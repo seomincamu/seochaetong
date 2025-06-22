@@ -210,7 +210,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 40px;
             margin-top: 50px;
         }
@@ -220,7 +220,7 @@
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #e11d48;
             display: block;
@@ -228,7 +228,7 @@
         }
 
         .stat-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #374151;
         }
@@ -667,9 +667,11 @@
                     <strong>24시간 승인</strong>
                     <span>빠른 심사 진행</span>
                 </div>
-                   </div class="cta-buttons">
-                     <a href="#form" class="cta-primary">🔥 지금 바로 신청하기</a>
-       </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#form" class="cta-primary">🔥 지금 바로 신청하기</a>
+            </div>
         </div>
     </section>
 
@@ -697,10 +699,12 @@
                 <div class="stat-item">
                     <span class="stat-number">빠른상담</span>
                     <div class="stat-text">각 분야별 전문상담사</div>
-            </div>
+                </div>
                 <div class="stat-item">
                     <span class="stat-number">컨설팅</span>
                     <div class="stat-text">무료 상세 컨설팅</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -766,7 +770,8 @@
                         <li>인건비 · 임차료 지원</li>
                         <li>서류간소화 빠른심사</li>
                         <li>신용보증서 발급</li>
-
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -777,7 +782,6 @@
             <h2 class="form-title">💰 무료 한도조회 신청</h2>
             <p class="form-subtitle">30초 입력으로 나의 대출 가능 금액을 확인하세요!</p>
             <p class="form-subtitle">※은행사 직접조회로 조회시 신용점수에 영향을끼치지않습니다※</p>
-        
             
             <form class="contact-form" id="loanForm">
                 <div class="form-row">
@@ -809,13 +813,30 @@
                             <option value="">선택해주세요</option>
                             <option value="5천만원 이하">5천만원 이하</option>
                             <option value="5천만원~1억원">5천만원 이상</option> 
-                       </select>
+                        </select>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="purpose">기타 메모</label>
                     <textarea id="purpose" name="purpose" rows="3" placeholder="특이사항이나 문의사항을 메모해주세요(선택)"></textarea>
+                </div>
+                
+                <!-- 개인정보 수집동의 -->
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 15px;">
+                        <h4 style="color: #fbbf24; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;">개인정보 수집 및 이용 동의</h4>
+                        <div style="background: rgba(255, 255, 255, 0.9); color: #333; padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; max-height: 120px; overflow-y: auto;">
+                            <strong>1. 개인정보 수집 목적:</strong> 대출 상담 및 금융상품 안내<br>
+                            <strong>2. 수집하는 개인정보 항목:</strong> 성명, 연락처, 직업정보, 희망대출금액<br>
+                            <strong>3. 개인정보 보유 및 이용기간:</strong> 수집일로부터 3년<br>
+                            <strong>4. 동의 거부권:</strong> 개인정보 수집에 동의하지 않을 권리가 있으며, 동의 거부 시 상담 서비스 이용이 제한될 수 있습니다.
+                        </div>
+                    </div>
+                    <label style="display: flex; align-items: center; cursor: pointer; font-size: 1rem;">
+                        <input type="checkbox" id="privacy-agree" name="privacy-agree" required style="width: 20px; height: 20px; margin-right: 10px; cursor: pointer;">
+                        <span style="color: white; font-weight: 500;">개인정보 수집 및 이용에 동의합니다. (필수)</span>
+                    </label>
                 </div>
                 
                 <button type="submit" class="submit-button">🔥 무료 한도조회 신청하기</button>
@@ -830,3 +851,129 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">베스트론컴퍼니</div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <strong>📞 대표전화</strong>
+                    <span>1588-0547</span>
+                </div>
+                <div class="contact-item">
+                    <strong>📧 이메일</strong>
+                    <span>info@bestloan.co.kr</span>
+                </div>
+                <div class="contact-item">
+                    <strong>🏢 본사</strong>
+                    <span>서울시 강남구 테헤란로 123</span>
+                </div>
+            </div>
+            <div class="footer-notice">
+                <p>사업자등록번호: 123-45-67890 | 대표자: 김베스트</p>
+                <p>© 2025 베스트론컴퍼니. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('loanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.name || !data.phone) {
+                alert('필수 항목을 모두 입력해주세요.');
+                return;
+            }
+            
+            // Privacy agreement validation
+            const privacyAgree = document.getElementById('privacy-agree');
+            if (!privacyAgree.checked) {
+                alert('개인정보 수집 및 이용에 동의해주세요.');
+                return;
+            }
+            
+            // Phone number validation (Korean format)
+            const phoneRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+            if (!phoneRegex.test(data.phone)) {
+                alert('올바른 휴대폰 번호를 입력해주세요.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitButton = document.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = '처리중...';
+            submitButton.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+                
+                // Track conversion (in real implementation, you'd send this to your analytics)
+                console.log('Form submitted:', data);
+                
+            }, 2000);
+        });
+
+        // Add scroll effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.product-card, .process-step').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
